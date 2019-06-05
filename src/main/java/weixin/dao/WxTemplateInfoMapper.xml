@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="weixin.dao.WxTemplateInfoDAO">
+
+	<select id="findByTemplateNo"
+		parameterType="java.lang.String" resultType="weixin.domain.WxTemplateInfoDomain"
+		flushCache="true">
+		select FIRST,TEMPLATE_NO,OPEN_ID,KEYWORD1,KEYWORD2,KEYWORD3,KEYWORD4,KEYWORD5,REMARK from WX_TEMPLATE_INFO
+		<where>
+			and TEMPLATE_NO = #{templateNo}
+		</where>
+	</select>
+	
+	<delete id="delete" parameterType="weixin.domain.WxTemplateInfoDomain"
+		flushCache="true">
+		delete from WX_TEMPLATE_INFO
+		<where>
+		   <if test="templateNo !=null">
+			and TEMPLATE_NO = #{templateNo}
+			</if>
+			<if test="openId !=null">
+			and OPEN_ID = #{openId}
+			</if>
+			<if test="first !=null">
+			and FIRST = #{first}
+			</if>
+			<if test="keyword1 !=null">
+			and KEYWORD1 = #{keyword1}
+			</if>
+			<if test="keyword2 !=null">
+			and KEYWORD2 = #{keyword2}
+			</if>
+			<if test="keyword3 !=null">
+			and KEYWORD3 = #{keyword3}
+			</if>
+			<if test="keyword4 !=null">
+			and KEYWORD4 = #{keyword4}
+			</if>
+			<if test="keyword5 !=null">
+			and KEYWORD5 = #{keyword5}
+			</if>
+			<if test="remark !=null">
+			and REMARK = #{remark}
+			</if>
+		</where>
+	</delete>
+
+</mapper>

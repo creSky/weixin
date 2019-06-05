@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="weixin.dao.WxBillDAO">
+
+	<select id="findByKey"
+		parameterType="weixin.domain.WxBillDomain" resultType="String"
+		flushCache="true">
+		select MONEY from wx_bill
+		<where>
+			and user_no = #{userNo}
+			and TRADE_NO=#{tradeNo}
+
+		</where>
+	</select>
+	
+	<select id="findByTransactionId"
+		parameterType="weixin.domain.WxBillDomain" resultType="String"
+		flushCache="true">
+		select JZ_FLAG from wx_bill
+		<where>
+			and user_no = #{userNo}
+			and TRADE_NO=#{tradeNo}
+
+		</where>
+	</select>
+	
+	
+	<insert id="insert" parameterType="weixin.domain.WxBillDomain"
+		flushCache="true">
+		insert into
+		wx_bill(USER_NO,TRADE_NO,MONEY,ZF_FLAG,ZF_DATE,JZ_FLAG,JZ_DATE,TRANSACTION_ID,MON,PRE_PAY_DATE)
+		values
+		(#{userNo},#{tradeNo},#{money},#{zfFlag},#{zfDate},#{jzFlag},#{jzDate},#{transactionId},#{mon},#{prePayDate})
+	</insert>
+	<update id="update" parameterType="weixin.domain.WxBillDomain"
+		flushCache="true">
+		update wx_bill
+		<set>
+			<if test="zfFlag !=null">
+				ZF_FLAG = #{zfFlag},
+			</if>
+			<if test="zfDate !=null">
+				ZF_DATE = #{zfDate},
+			</if>
+			<if test="jzFlag !=null">
+				JZ_FLAG = #{jzFlag},
+			</if>
+			<if test="jzDate !=null">
+				JZ_DATE = #{jzDate},
+			</if>
+			<if test="transactionId !=null">
+				TRANSACTION_ID = #{transactionId},
+			</if>
+		</set>
+		<where>
+			and USER_NO = #{userNo}
+			and TRADE_NO = #{tradeNo}
+		</where>
+	</update>
+
+</mapper>

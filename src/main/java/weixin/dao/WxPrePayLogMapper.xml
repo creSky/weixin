@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="weixin.dao.WxPrePayLogDAO">
+
+	<insert id="insert" parameterType="weixin.domain.WxPrePayLogDomain"
+		flushCache="true">
+		insert into
+		wx_pre_pay_log(PREPAY_ID,NONCE_STR,SIGN_TYPE,APP_ID,TIMESTAMP,SIGNATURE,RETURN_CODE,RETURN_MSG,USER_NO,ZF_DATE,TRADE_NO)
+		values
+		(#{prepayId},#{nonceStr},#{signType},#{appId},#{timestamp},#{signature},#{returnCode},#{returnMsg},#{userNo},#{zfDate},#{tradeNo})
+	</insert>
+
+</mapper>

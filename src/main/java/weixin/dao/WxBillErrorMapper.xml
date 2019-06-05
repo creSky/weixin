@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="weixin.dao.WxBillErrorDAO">
+	<insert id="insert" parameterType="weixin.domain.WxBillErrorDomain"
+		flushCache="true">
+		insert into
+		wx_bill_error(USER_NO,TRADE_NO,MONEY,FLAG,DATE,ERROR,MON)
+		values
+		(#{userNo},#{tradeNo},#{money},#{flag},#{date},#{error},#{mon})
+	</insert>
+
+</mapper>
