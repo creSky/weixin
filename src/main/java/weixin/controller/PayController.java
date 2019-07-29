@@ -386,7 +386,7 @@ public class PayController {
 	 * 
 	 * 
 	 */
-	private boolean dealWxBill(TreeMap<String, String> params) {
+	private synchronized boolean dealWxBill(TreeMap<String, String> params) {
 
 		// 返回值是分 转成元
 		String total_fee = params.get("total_fee");
